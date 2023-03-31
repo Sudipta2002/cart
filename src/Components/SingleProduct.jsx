@@ -23,17 +23,39 @@ const SingleProduct = ({prod}) => {
           </Card.Subtitle>
           
           {cart.some((p) => p.id === prod.id) ? (
-            <Button
-              variant="danger"
-              onClick={() =>
-                dispatch({
-                  type: "REMOVE_FROM_CART",
-                  payload: prod,
-                }) 
-              }
-            >
-              Remove from Cart
-            </Button>
+            // <Button
+            //   variant="danger"
+            //   onClick={() =>
+            //     dispatch({
+            //       type: "REMOVE_FROM_CART",
+            //       payload: prod,
+            //     }) 
+            //   }
+            // >
+            //   Remove from Cart
+            // </Button>
+            <div className="add-minus-quantity"> 
+            <TfiPlus size={50} onClick={() =>
+                  dispatch({
+                    type: "UPDATE_CART",
+                    payload: {
+                      id:prod.id,
+                      qty:cart[cart.findIndex((i)=>i.id==prod.id)]?.qty
+                    },
+                  })} className="plus"/>
+            <input type="text" placeholder={cart[cart.findIndex((i)=>i.id==prod.id)]?.qty} disabled />
+            <TfiMinus className="plus" size={50}onClick={() =>
+                  dispatch({
+                    type: "REMOVE_ITEM",
+                    payload: {
+                      id:prod.id,
+                      qty:cart[cart.findIndex((i)=>i.id==prod.id)]?.qty
+                    },
+                  }) 
+                  
+                }/>
+            {/* {console.log(cart)} */}
+        </div>
           ) : (
             <Button
               onClick={() =>
@@ -46,22 +68,7 @@ const SingleProduct = ({prod}) => {
               Add to Cart
             </Button>
           )}
-          <div className="add-minus-quantity">
-          <TfiPlus onClick={() =>
-                dispatch({
-                  type: "ADD_TO_CART",
-                  payload: prod,
-                })}/>
-          <input type="text" placeholder={prod.qty} disabled />
-          <TfiMinus onClick={() =>
-                dispatch({
-                  type: "REMOVE_FROM_CART",
-                  payload: prod,
-                }) 
-                
-              }/>
-              {console.log(prod)}
-        </div>
+         
         </Card.Body>        
         </div>
   ) 

@@ -5,7 +5,7 @@ import  './styles.css';
 const Home = () => {
 
     const {state:{products},}=CartState();
-    console.log(products);
+    // console.log(products);
   return (
     <div className='home'>
         <div className='productContainer'>

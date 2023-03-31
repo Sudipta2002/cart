@@ -74,14 +74,19 @@
 
 .add-minus-quantity {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
     align-items: center;
+    background-color: rgb(221, 220, 223);
+    color: rgb(0, 0, 0);
+    width: 10vw;
+    border-radius: 15px;
 }
 
-.add-minus-quantity button {
-    border: none;
-    background-color: transparent;
-    outline: none;
+.plus {
+    background-color: rgb(61, 42, 165);
+    color: aliceblue;
+    width: 50px;
+    border-radius: 15px;
     cursor: pointer;
 }
 
@@ -100,10 +105,6 @@
     border-radius: 0.5rem;
     outline: none;
     background-color: transparent;
-}
-
-.add-minus-quantity input:focus {
-    outline: none;
 }
 
 

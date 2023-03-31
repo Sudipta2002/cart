@@ -33,6 +33,7 @@ const Context = ({children}) => {
       payload: id,
     });
   };
+  
   return (
     <Cart.Provider value={{state,dispatch,increment,decrement}}>{children}</Cart.Provider>
   )

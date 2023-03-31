@@ -40,7 +40,7 @@ const Header = () => {
           <Dropdown alignRight>
             <Dropdown.Toggle variant="success">
               <FaShoppingCart color="white" fontSize="25px" />
-              <Badge>{cart.length}</Badge>
+              <Badge>{cart.reduce((acc,curr)=>acc+curr.qty,0)}</Badge>
             </Dropdown.Toggle>
 
             <Dropdown.Menu style={{ minWidth: 370 }}>
@@ -52,23 +52,27 @@ const Header = () => {
                       
                       <div className="cartItemDetail">
                         <span>{prod.name}</span>
-                        <span>₹ {prod.price}</span>
+                        <span>Price- ₹ {prod.price}</span>
+                        <span>Quantity- {prod.qty}</span>
                       </div>
                       <AiFillDelete
                         fontSize="20px"
                         style={{ cursor: "pointer" }}
                         onClick={() =>
                           dispatch({
-                            type: "REMOVE_FROM_CART",
-                            payload: prod,
-                          })
+                            type: "REMOVE_ITEM",
+                            payload: {
+                              id:prod.id,
+                              qty:cart[cart.findIndex((i)=>i.id==prod.id)]?.qty
+                            },
+                          }) 
                         }
                       />
                     </span>
                   ))}
-                  <a href="/cart">
+                  <a href="/payment">
                     <Button style={{ width: "95%", margin: "0 10px" }}>
-                      Go To Cart
+                      Pay {cart.reduce((acc,curr)=>acc+curr.qty*curr.price,0)}
                     </Button>
                   </a>
                 </>
